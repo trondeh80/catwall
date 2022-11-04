@@ -24,7 +24,7 @@ export default function CatContainer() {
     const { fallback_url } = data.media.reddit_video;
     return (
       <>
-        <video autoPlay loop ref={videoEl}>
+        <video autoPlay loop muted ref={videoEl}>
           <source src={fallback_url} type="video/mp4" />
         </video>
       </>
