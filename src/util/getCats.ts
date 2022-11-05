@@ -14,7 +14,9 @@ const subreddits: string[] = [
   "mildlystartledcats",
   "catslaps",
   "delightfullychubby",
-];
+  "WhatsWrongWithYourCat",
+  "StartledCats"
+]
 
 export default async function getCats() {
   const subredditData = await fetch(
