@@ -39,15 +39,18 @@ export default function CatContainer() {
 
   if (!hasVideo && post_hint !== "image" && !hasImageExt) {
     refetch();
+    return null;
   }
 
   if (!hasVideo && !url) {
     refetch();
+    return null;
   }
 
   // Todo: Fix this! Gallery data contains "mediaId" - I do not know how to get the media!
   if (gallery_data) {
     refetch(); // If its a gallery we simply refetch to get something else for now
+    return null;
   }
 
   return (
