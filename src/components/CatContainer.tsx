@@ -19,6 +19,11 @@ export default function CatContainer() {
     videoEl.current.play();
   }, [videoEl]);
 
+  useEffect(() => {
+    const timerId = setTimeout(refetch, 30000);
+    return () => clearTimeout(timerId);
+  }, [refetch, data]);
+
   if (isLoading) return <>Laster inn katten...</>;
 
   if (error) return <>Could not fetch the cat! :(</>;
@@ -27,6 +32,10 @@ export default function CatContainer() {
   const hasVideo = data?.media?.reddit_video ?? false;
 
   if (!hasVideo && post_hint !== "image" && !hasImageExt) {
+    refetch();
+  }
+
+  if (!hasVideo && !url) {
     refetch();
   }
 
