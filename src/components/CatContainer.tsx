@@ -27,9 +27,15 @@ export default function CatContainer() {
   if (isLoading) return <>Laster inn katten...</>;
 
   if (error) return <>Could not fetch the cat! :(</>;
-  const { url, post_hint } = data;
+
+  if (!data) {
+    refetch();
+    return null;
+  }
+
+  const { url, post_hint, media } = data;
   const hasImageExt = imageExtRegExp.test(url);
-  const hasVideo = data?.media?.reddit_video ?? false;
+  const hasVideo = media?.reddit_video ?? false;
 
   if (!hasVideo && post_hint !== "image" && !hasImageExt) {
     refetch();
@@ -44,10 +50,7 @@ export default function CatContainer() {
       <InfoBar data={data} />
       {hasVideo && (
         <video autoPlay loop muted ref={videoEl}>
-          <source
-            src={data?.media?.reddit_video.fallback_url}
-            type="video/mp4"
-          />
+          <source src={media.reddit_video?.fallback_url} type="video/mp4" />
         </video>
       )}
 

@@ -1,7 +1,8 @@
+import { RedditPostData } from "../util/types";
 import "./InfoBar.css";
 
 type PropTypes = {
-  data: any;
+  data: RedditPostData;
 };
 
 export default function InfoBar({ data }: PropTypes) {
