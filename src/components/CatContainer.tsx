@@ -17,7 +17,7 @@ export default function CatContainer() {
       return;
     }
     videoEl.current.play();
-  }, [videoEl]);
+  }, [videoEl, data]);
 
   useEffect(() => {
     const timerId = setTimeout(refetch, 30000);
@@ -49,7 +49,13 @@ export default function CatContainer() {
     <div className="cat-container">
       <InfoBar data={data} />
       {hasVideo && (
-        <video autoPlay loop muted ref={videoEl}>
+        <video
+          key={media.reddit_video?.fallback_url}
+          autoPlay
+          loop
+          muted
+          ref={videoEl}
+        >
           <source src={media.reddit_video?.fallback_url} type="video/mp4" />
         </video>
       )}
