@@ -1,5 +1,5 @@
-type interval = "day" | "week" | "month" | "year";
-const postInterval: interval = "day";
+type interval = "hour" | "day" | "week" | "month" | "year";
+const postInterval: interval = "hour";
 
 const subreddits: string[] = [
   "thisismylifemeow",
@@ -13,8 +13,8 @@ const subreddits: string[] = [
   "cattaps",
   "mildlystartledcats",
   "catslaps",
-  "delightfullychubby"
-]
+  "delightfullychubby",
+];
 
 export default async function getCats() {
   const subredditData = await fetch(
