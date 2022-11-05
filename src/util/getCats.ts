@@ -1,11 +1,28 @@
 type interval = "day" | "week" | "month" | "year";
-const subreddit: string = "thisismylifemeow";
-const interval: interval = "day";
+const postInterval: interval = "day";
+
+const subreddits: string[] = [
+  "thisismylifemeow",
+  "supermodelcats",
+  "aww",
+  "MEOW_IRL",
+  "Catculations",
+  "tuckedinkitties",
+  "catsbeingcats",
+  "chonkers",
+  "cattaps",
+  "mildlystartledcats"
+]
 
 export default async function getCats() {
   const subredditData = await fetch(
-    `https://www.reddit.com/r/${subreddit}/top.json?limit=1&t=${interval}`
+    `https://www.reddit.com/r/${getSubReddit()}/top.json?limit=1&t=${postInterval}`
   ).then((response) => response.json());
   const [topUpvoted = {}] = subredditData?.data?.children ?? [];
   return topUpvoted?.data ?? {};
+}
+
+function getSubReddit(): string {
+  const index = Math.floor(Math.random() * subreddits.length) + 0;
+  return subreddits[index];
 }
