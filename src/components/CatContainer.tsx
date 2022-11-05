@@ -33,7 +33,7 @@ export default function CatContainer() {
     return null;
   }
 
-  const { url, post_hint, media } = data;
+  const { url, post_hint, media, gallery_data } = data;
   const hasImageExt = imageExtRegExp.test(url);
   const hasVideo = media?.reddit_video ?? false;
 
@@ -43,6 +43,11 @@ export default function CatContainer() {
 
   if (!hasVideo && !url) {
     refetch();
+  }
+
+  // Todo: Fix this! Gallery data contains "mediaId" - I do not know how to get the media!
+  if (gallery_data) {
+    refetch(); // If its a gallery we simply refetch to get something else for now
   }
 
   return (

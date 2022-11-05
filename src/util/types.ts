@@ -10,6 +10,9 @@ export type RedditPostData = {
     },
     title: string;
     subreddit: string;
+    gallery_data ?: {
+        items:[]
+    }
 }
 
 export type RedditPost = {
