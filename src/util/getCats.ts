@@ -27,6 +27,6 @@ export default async function getCats() {
 }
 
 function getSubReddit(): string {
-  const index = Math.floor(Math.random() * subreddits.length) + 0;
+  const index = Math.floor(Math.random() * subreddits.length);
   return subreddits[index];
 }
