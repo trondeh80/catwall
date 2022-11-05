@@ -1,6 +1,7 @@
 import React, { useEffect, useRef } from "react";
 import { useQuery } from "@tanstack/react-query";
 import getCats from "../util/getCats";
+import InfoBar from "./InfoBar";
 
 const imageExtRegExp = /(.*)\.[png|jpg|jpeg|gif]$/gim;
 
@@ -29,27 +30,25 @@ export default function CatContainer() {
     refetch();
   }
 
-  if (hasVideo) {
-    const { fallback_url } = data?.media?.reddit_video ?? {};
-    return (
-      <>
+  return (
+    <div className="cat-container">
+      <InfoBar data={data} />
+      {hasVideo && (
         <video autoPlay loop muted ref={videoEl}>
-          <source src={fallback_url} type="video/mp4" />
+          <source
+            src={data?.media?.reddit_video.fallback_url}
+            type="video/mp4"
+          />
         </video>
-      </>
-    );
-  }
+      )}
 
-  if (url) {
-    return (
-      <>
+      {url && !hasVideo && (
         <img
           src={url}
           className="cat-image"
           alt="A top uvoted cat from reddit"
         />
-      </>
-    );
-  }
-  return null;
+      )}
+    </div>
+  );
 }

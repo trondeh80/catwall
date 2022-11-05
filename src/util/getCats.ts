@@ -11,7 +11,9 @@ const subreddits: string[] = [
   "catsbeingcats",
   "chonkers",
   "cattaps",
-  "mildlystartledcats"
+  "mildlystartledcats",
+  "catslaps",
+  "delightfullychubby"
 ]
 
 export default async function getCats() {
