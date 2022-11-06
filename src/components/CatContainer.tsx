@@ -37,19 +37,12 @@ export default function CatContainer() {
   const hasImageExt = imageExtRegExp.test(url);
   const hasVideo = media?.reddit_video ?? false;
 
-  if (!hasVideo && post_hint !== "image" && !hasImageExt) {
+  if (
+    (!hasVideo && post_hint !== "image" && !hasImageExt) ||
+    (!hasVideo && !url) ||
+    gallery_data // Todo: Fix this! Gallery data contains "mediaId" - I do not know how to get the media!
+  ) {
     refetch();
-    return null;
-  }
-
-  if (!hasVideo && !url) {
-    refetch();
-    return null;
-  }
-
-  // Todo: Fix this! Gallery data contains "mediaId" - I do not know how to get the media!
-  if (gallery_data) {
-    refetch(); // If its a gallery we simply refetch to get something else for now
     return null;
   }
 
@@ -72,7 +65,7 @@ export default function CatContainer() {
         <img
           src={url}
           className="cat-image"
-          alt="A top uvoted cat from reddit"
+          alt="A top upvoted cat from reddit"
         />
       )}
     </div>
