@@ -20,7 +20,8 @@ export default function CatContainer() {
   }, [videoEl, data]);
 
   useEffect(() => {
-    const timerId = setTimeout(refetch, 30000);
+    const timeoutSeconds = data?.media?.reddit_video?.duration ?? 10;
+    const timerId = setTimeout(refetch, timeoutSeconds * 1000);
     return () => clearTimeout(timerId);
   }, [refetch, data]);
 

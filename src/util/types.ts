@@ -5,7 +5,8 @@ export type RedditPostData = {
     post_hint: string; 
     media: {
       reddit_video?: {
-        fallback_url: string
+        fallback_url: string;
+        duration: number;
       }
     },
     title: string;
