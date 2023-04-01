@@ -1,4 +1,4 @@
-name: scp files
+name: Deploy
 on: [push]
 jobs:
 
@@ -10,9 +10,9 @@ jobs:
     - name: copy file via ssh password
       uses: appleboy/scp-action@master
       with:
-        host: ${{ secrets.HOST }}
+        host: ${{ secrets.HOSTNAME }}
         username: ${{ secrets.USERNAME }}
         password: ${{ secrets.PASSWORD }}
         port: ${{ secrets.PORT }}
         source: "README.md"
-        target: "/home/teh/test"
+        target: "/home/github/test.md"
