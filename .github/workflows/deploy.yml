@@ -13,6 +13,6 @@ jobs:
         host: ${{ secrets.HOSTNAME }}
         username: ${{ secrets.USERNAME }}
         password: ${{ secrets.PASSWORD }}
-        port: ${{ secrets.PORT }}
+        port: 22
         source: "README.md"
         target: "/home/github/test.md"
